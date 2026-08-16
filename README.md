@@ -48,7 +48,7 @@ A full-stack **MERN Finance Tracker** application for managing personal finances
 * React Router
 * Axios
 * JavaScript
-* CSS
+* Tailwind CSS
 
 ### Backend
 
