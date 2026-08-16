@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root { font-family: Arial, Helvetica, sans-serif; color: #161616; background: #f8f4e9; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background-color: #f8f4e9; background-image: radial-gradient(#161616 1px, transparent 1px); background-size: 22px 22px; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+.brutal-shell { min-height: 100vh; padding: 22px; }
+.brutal-nav, .brutal-card, .auth-card, .transaction-row, .category-row { border: 3px solid #161616; box-shadow: 6px 6px 0 #161616; background: #fffdf7; }
+.brutal-nav { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 18px; background: #fff25c; }
+.brand { font-size: 1.5rem; font-weight: 950; letter-spacing: -1px; text-transform: uppercase; }
+.brand small { display: block; margin-top: 3px; font-size: .68rem; letter-spacing: .08em; }
+.nav-actions, .filter-row, .inline-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.brutal-button { border: 3px solid #161616; background: #ff6b6b; color: #161616; padding: .62rem .85rem; font-weight: 900; text-transform: uppercase; box-shadow: 3px 3px 0 #161616; transition: transform .12s, box-shadow .12s; }
+.brutal-button:hover, .brutal-button.active { transform: translate(3px, 3px); box-shadow: 0 0 0 #161616; }
+.brutal-button.mint { background: #68e0b3; }.brutal-button.yellow { background: #fff25c; }.brutal-button.white { background: #fffdf7; }.brutal-button.danger { background: #ff6b6b; }
+.page-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 40px 0 22px; }
+.kicker { margin: 0 0 6px; font-weight: 900; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
+h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 5rem); line-height: .86; text-transform: uppercase; letter-spacing: -3px; } h2 { margin: 0 0 18px; text-transform: uppercase; font-size: 1.05rem; }
+.summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }.brutal-card { padding: 22px; }.stat-card { min-height: 150px; display: flex; flex-direction: column; justify-content: space-between; }.stat-card.mint { background: #68e0b3; }.stat-card.pink { background: #ff8ac5; }.stat-card.yellow { background: #fff25c; }.stat-label { font-size: .83rem; font-weight: 900; text-transform: uppercase; }.stat-number { font-size: clamp(1.7rem, 3vw, 3rem); font-weight: 950; letter-spacing: -2px; }
+.dashboard-grid { display: grid; grid-template-columns: 1.35fr .85fr; gap: 22px; margin-top: 24px; }.chart-wrap { height: 270px; }.category-list { display: grid; gap: 10px; }.category-row { padding: 12px; display: flex; justify-content: space-between; gap: 16px; }.amount { font-weight: 950; white-space: nowrap; }.income { color: #087857; }.expense { color: #c52d2d; }.muted { color: #4b4b4b; font-size: .9rem; }.empty { border: 2px dashed #161616; padding: 18px; background: #fffdf7; }
+.transactions-layout { display: grid; grid-template-columns: minmax(280px, .85fr) minmax(0, 1.15fr); gap: 24px; align-items: start; }.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }.form-stack { display: grid; gap: 12px; }.brutal-input { width: 100%; border: 3px solid #161616; background: #fffdf7; padding: .72rem; outline: none; }.brutal-input:focus { background: #fff25c; }.transaction-list { display: grid; gap: 14px; }.transaction-row { padding: 16px; }.transaction-main { display: flex; justify-content: space-between; align-items: center; gap: 14px; }.transaction-title { margin: 0; font-weight: 950; font-size: 1.05rem; }.transaction-meta { margin: 5px 0 0; font-size: .82rem; font-weight: 700; text-transform: uppercase; }.edit-grid { display: grid; gap: 10px; }
+.auth-page { min-height: 100vh; display: grid; place-items: center; padding: 22px; }.auth-card { width: min(100%, 460px); padding: 30px; background: #68e0b3; }.auth-card.register { background: #ff8ac5; }.auth-card h1 { font-size: 3.2rem; margin-bottom: 10px; }.message-error { border: 3px solid #161616; background: #ff6b6b; padding: 10px; font-weight: 800; }
+@media (max-width: 780px) { .brutal-shell { padding: 14px; }.brutal-nav { align-items: flex-start; flex-direction: column; }.summary-grid, .dashboard-grid, .transactions-layout { grid-template-columns: 1fr; }.page-head { align-items: flex-start; flex-direction: column; margin-top: 28px; }.form-grid { grid-template-columns: 1fr; }.transaction-main { align-items: flex-start; flex-direction: column; } h1 { letter-spacing: -2px; } }
