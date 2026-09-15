@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "dev": "nodemon server.js"
   },
   "keywords": [],
@@ -21,7 +21,7 @@
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
     "jsonwebtoken": "^9.0.3",
-    "mongodb": "^7.5.0",
+    "mongodb": "^7.6.0",
     "mongoose": "^9.9.2"
   }
 }
