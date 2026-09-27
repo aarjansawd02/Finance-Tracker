@@ -114,7 +114,8 @@ function TransactionsPage () {
                 className='brutal-input'
                 type='number'
                 name='amount'
-                min='1'
+                min='0.01'
+                step='0.01'
                 placeholder='AMOUNT'
                 value={form.amount}
                 onChange={change}
@@ -196,6 +197,8 @@ function TransactionsPage () {
                       <input
                         className='brutal-input'
                         type='number'
+                        min='0.01'
+                        step='0.01'
                         value={editForm.amount}
                         onChange={e =>
                           setEditForm({ ...editForm, amount: e.target.value })
