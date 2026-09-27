@@ -55,7 +55,7 @@ function DashboardPage () {
         </article>
       </section>
       <section className='dashboard-grid'>
-        <article className='brutal-card'>
+        <article className='brutal-card dashboard-chart-card'>
           <h2>Income vs. expense</h2>
           <div className='chart-wrap'>
             <ResponsiveContainer width='100%' height='100%'>
@@ -82,7 +82,7 @@ function DashboardPage () {
             </ResponsiveContainer>
           </div>
         </article>
-        <article className='brutal-card'>
+        <article className='brutal-card dashboard-breakdown-card'>
           <h2>Where it went</h2>
           <div className='category-list'>
             {summary.categoryBreakdown.length ? (
