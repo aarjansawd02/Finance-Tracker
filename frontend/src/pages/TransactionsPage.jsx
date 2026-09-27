@@ -22,6 +22,8 @@ function TransactionsPage () {
   const [newCat, setNewCat] = useState('')
   const [showCat, setShowCat] = useState(false)
   const [filter, setFilter] = useState('all')
+  const [dateFrom, setDateFrom] = useState('')
+  const [dateTo, setDateTo] = useState('')
   const [editing, setEditing] = useState(null)
   const [editForm, setEditForm] = useState({})
   const [formError, setFormError] = useState('')
@@ -54,9 +56,13 @@ function TransactionsPage () {
       setFormError('Could not update transaction')
     }
   }
-  const visible = transactions.filter(
-    t => filter === 'all' || t.type === filter
-  )
+  const visible = transactions.filter(t => {
+    const transactionDate = t.date?.slice(0, 10) || ''
+    const matchesType = filter === 'all' || t.type === filter
+    const matchesStart = !dateFrom || transactionDate >= dateFrom
+    const matchesEnd = !dateTo || transactionDate <= dateTo
+    return matchesType && matchesStart && matchesEnd
+  })
   const downloadSummary = () => window.print()
   const sortedTransactions = [...transactions].sort(
     (a, b) => new Date(b.date) - new Date(a.date)
@@ -213,6 +219,41 @@ function TransactionsPage () {
               Download PDF
             </button>
           </div>
+          <div className='date-range-controls'>
+            <label className='date-range-field'>
+              From
+              <input
+                className='brutal-input'
+                type='date'
+                aria-label='Filter transactions from date'
+                max={dateTo || undefined}
+                value={dateFrom}
+                onChange={e => setDateFrom(e.target.value)}
+              />
+            </label>
+            <label className='date-range-field'>
+              To
+              <input
+                className='brutal-input'
+                type='date'
+                aria-label='Filter transactions through date'
+                min={dateFrom || undefined}
+                value={dateTo}
+                onChange={e => setDateTo(e.target.value)}
+              />
+            </label>
+            <button
+              className='brutal-button white'
+              type='button'
+              disabled={!dateFrom && !dateTo}
+              onClick={() => {
+                setDateFrom('')
+                setDateTo('')
+              }}
+            >
+              Clear dates
+            </button>
+          </div>
           <div className='transaction-list'>
             {error && <p className='message-error'>{error}</p>}
             {visible.length ? (
@@ -303,7 +344,11 @@ function TransactionsPage () {
                 </article>
               ))
             ) : (
-              <p className='empty'>Nothing here yet. Make a move.</p>
+              <p className='empty'>
+                {transactions.length
+                  ? 'No transactions match these filters.'
+                  : 'Nothing here yet. Make a move.'}
+              </p>
             )}
           </div>
         </section>
