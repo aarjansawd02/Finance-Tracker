@@ -21,4 +21,37 @@ h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 5rem); line-height: .86; text-tran
 .dashboard-grid { display: grid; grid-template-columns: 1.35fr .85fr; gap: 22px; margin-top: 24px; }.chart-wrap { height: 270px; }.category-list { display: grid; gap: 10px; }.category-row { padding: 12px; display: flex; justify-content: space-between; gap: 16px; }.amount { font-weight: 950; white-space: nowrap; }.income { color: #087857; }.expense { color: #c52d2d; }.muted { color: #4b4b4b; font-size: .9rem; }.empty { border: 2px dashed #161616; padding: 18px; background: #fffdf7; }
 .transactions-layout { display: grid; grid-template-columns: minmax(280px, .85fr) minmax(0, 1.15fr); gap: 24px; align-items: start; }.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }.form-stack { display: grid; gap: 12px; }.brutal-input { width: 100%; border: 3px solid #161616; background: #fffdf7; padding: .72rem; outline: none; }.brutal-input:focus { background: #fff25c; }.transaction-list { display: grid; gap: 14px; }.transaction-row { padding: 16px; }.transaction-main { display: flex; justify-content: space-between; align-items: center; gap: 14px; }.transaction-title { margin: 0; font-weight: 950; font-size: 1.05rem; }.transaction-meta { margin: 5px 0 0; font-size: .82rem; font-weight: 700; text-transform: uppercase; }.edit-grid { display: grid; gap: 10px; }
 .auth-page { min-height: 100vh; display: grid; place-items: center; padding: 22px; }.auth-card { width: min(100%, 460px); padding: 30px; background: #68e0b3; }.auth-card.register { background: #ff8ac5; }.auth-card h1 { font-size: 3.2rem; margin-bottom: 10px; }.message-error { border: 3px solid #161616; background: #ff6b6b; padding: 10px; font-weight: 800; }
+.pdf-report { display: none; }
+@media print {
+  @page { size: A4 portrait; margin: 14mm 12mm 18mm; }
+  body { min-width: 0; background: #fff; color: #161616; font-family: Arial, Helvetica, sans-serif; }
+  body * { visibility: hidden !important; }
+  .pdf-report, .pdf-report * { visibility: visible !important; }
+  .pdf-report { display: block !important; position: absolute; inset: 0 auto auto 0; width: 100%; background: #fff; color: #161616; font-size: 9pt; }
+  .pdf-report-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding-bottom: 14px; border-bottom: 3px solid #161616; }
+  .pdf-report-header h1 { margin: 4px 0 8px; font-size: 25pt; line-height: 1; letter-spacing: -1px; text-transform: uppercase; }
+  .pdf-report-header p { margin: 0; font-size: 9pt; }
+  .pdf-report-kicker { font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; }
+  .pdf-report-balance { min-width: 130px; padding: 10px; border: 2px solid #161616; background: #fff25c; }
+  .pdf-report-balance span, .pdf-report-totals span { display: block; margin-bottom: 5px; font-size: 8pt; font-weight: 800; text-transform: uppercase; }
+  .pdf-report-balance strong { font-size: 14pt; }
+  .pdf-report-totals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0 18px; }
+  .pdf-report-totals > div { padding: 9px; border: 1.5px solid #161616; }
+  .pdf-report-totals strong { font-size: 11pt; }
+  .pdf-transaction-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 8.5pt; }
+  .pdf-transaction-table th { padding: 8px 7px; border: 1px solid #161616; background: #202020; color: #fff; text-align: left; text-transform: uppercase; font-size: 7.5pt; letter-spacing: .4px; }
+  .pdf-transaction-table td { padding: 7px; border: 1px solid #b8b8b8; overflow-wrap: anywhere; vertical-align: top; }
+  .pdf-transaction-table tbody tr:nth-child(even) { background: #f2f2f2; }
+  .pdf-transaction-table th:nth-child(1) { width: 16%; }
+  .pdf-transaction-table th:nth-child(2) { width: 30%; }
+  .pdf-transaction-table th:nth-child(3) { width: 20%; }
+  .pdf-transaction-table th:nth-child(4) { width: 19%; }
+  .pdf-transaction-table th:nth-child(5) { width: 15%; }
+  .pdf-amount { white-space: nowrap; font-weight: 800; }
+  .pdf-amount.income { color: #087857; }
+  .pdf-amount.expense { color: #c52d2d; }
+  .pdf-type { text-transform: capitalize; }
+  .pdf-transaction-table tr { break-inside: avoid; }
+  .pdf-report-footer { position: fixed; right: 0; bottom: -11mm; left: 0; padding-top: 5px; border-top: 1px solid #aaa; color: #555; font-size: 7pt; }
+}
 @media (max-width: 780px) { .brutal-shell { padding: 14px; }.brutal-nav { align-items: flex-start; flex-direction: column; }.summary-grid, .dashboard-grid, .transactions-layout { grid-template-columns: 1fr; }.page-head { align-items: flex-start; flex-direction: column; margin-top: 28px; }.form-grid { grid-template-columns: 1fr; }.transaction-main { align-items: flex-start; flex-direction: column; } h1 { letter-spacing: -2px; } }

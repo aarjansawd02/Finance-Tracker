@@ -57,6 +57,24 @@ function TransactionsPage () {
   const visible = transactions.filter(
     t => filter === 'all' || t.type === filter
   )
+  const downloadSummary = () => window.print()
+  const sortedTransactions = [...transactions].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  )
+  const totals = transactions.reduce(
+    (sum, transaction) => {
+      if (transaction.type === 'income') sum.income += Number(transaction.amount)
+      else sum.expense += Number(transaction.amount)
+      return sum
+    },
+    { income: 0, expense: 0 }
+  )
+  const formatAmount = amount =>
+    new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 2
+    }).format(amount)
   if (loading)
     return (
       <main className='brutal-shell'>
@@ -186,6 +204,14 @@ function TransactionsPage () {
                 {f}
               </button>
             ))}
+            <button
+              className='brutal-button mint'
+              type='button'
+              onClick={downloadSummary}
+              disabled={!transactions.length}
+            >
+              Download PDF
+            </button>
           </div>
           <div className='transaction-list'>
             {error && <p className='message-error'>{error}</p>}
@@ -282,6 +308,49 @@ function TransactionsPage () {
           </div>
         </section>
       </div>
+      <section className='pdf-report' aria-label='Transaction summary for PDF'>
+        <header className='pdf-report-header'>
+          <div>
+            <p className='pdf-report-kicker'>Ledger · Personal finance</p>
+            <h1>Transaction summary</h1>
+            <p>All transactions · Generated {new Date().toLocaleDateString()}</p>
+          </div>
+          <div className='pdf-report-balance'>
+            <span>Net balance</span>
+            <strong>{formatAmount(totals.income - totals.expense)}</strong>
+          </div>
+        </header>
+        <div className='pdf-report-totals'>
+          <div><span>Income</span><strong>{formatAmount(totals.income)}</strong></div>
+          <div><span>Expenses</span><strong>{formatAmount(totals.expense)}</strong></div>
+          <div><span>Transactions</span><strong>{transactions.length}</strong></div>
+        </div>
+        <table className='pdf-transaction-table'>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Transaction</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sortedTransactions.map(transaction => (
+              <tr key={transaction._id}>
+                <td>{transaction.date?.slice(0, 10) || '-'}</td>
+                <td>{transaction.description || '-'}</td>
+                <td>{transaction.category?.name || 'Unsorted'}</td>
+                <td className={`pdf-amount ${transaction.type}`}>
+                  {formatAmount(Number(transaction.amount))}
+                </td>
+                <td className='pdf-type'>{transaction.type}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <footer className='pdf-report-footer'>Personal transaction record · Keep this document private.</footer>
+      </section>
     </main>
   )
 }
