@@ -88,7 +88,7 @@ function TransactionsPage () {
       </main>
     )
   return (
-    <main className='brutal-shell'>
+    <main className='brutal-shell transactions-page'>
       <Navbar />
       <header className='page-head'>
         <div>
@@ -197,7 +197,7 @@ function TransactionsPage () {
             <button className='brutal-button mint'>Add transaction →</button>
           </form>
         </section>
-        <section>
+        <section className='transactions-panel'>
           <div className='filter-row'>
             {['all', 'income', 'expense'].map(f => (
               <button

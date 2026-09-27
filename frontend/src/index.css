@@ -58,3 +58,15 @@ h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 5rem); line-height: .86; text-tran
   .pdf-report-footer { position: fixed; right: 0; bottom: -11mm; left: 0; padding-top: 5px; border-top: 1px solid #aaa; color: #555; font-size: 7pt; }
 }
 @media (max-width: 780px) { .brutal-shell { padding: 14px; }.brutal-nav { align-items: flex-start; flex-direction: column; }.summary-grid, .dashboard-grid, .transactions-layout { grid-template-columns: 1fr; }.page-head { align-items: flex-start; flex-direction: column; margin-top: 28px; }.form-grid { grid-template-columns: 1fr; }.date-range-controls { grid-template-columns: 1fr 1fr; }.date-range-controls > button { grid-column: 1 / -1; }.transaction-main { align-items: flex-start; flex-direction: column; } h1 { letter-spacing: -2px; } }
+@media screen and (min-width: 781px) and (min-height: 760px) {
+  .transactions-page { display: flex; height: 100vh; min-height: 0; flex-direction: column; overflow: hidden; }
+  .transactions-page > .brutal-nav { flex: 0 0 auto; }
+  .transactions-page > .page-head { flex: 0 0 auto; margin: clamp(18px, 3vh, 32px) 0 18px; }
+  .transactions-page > .transactions-layout { flex: 1 1 auto; min-height: 0; align-items: stretch; }
+  .transactions-panel { display: flex; min-height: 0; flex-direction: column; }
+  .transactions-panel > .filter-row, .transactions-panel > .date-range-controls { flex: 0 0 auto; }
+  .transactions-panel > .transaction-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; align-content: start; padding: 0 9px 9px 0; overscroll-behavior: contain; scrollbar-color: #fff25c #fffdf7; scrollbar-width: thin; }
+  .transactions-panel > .transaction-list::-webkit-scrollbar { width: 12px; }
+  .transactions-panel > .transaction-list::-webkit-scrollbar-track { border-left: 2px solid #161616; background: #fffdf7; }
+  .transactions-panel > .transaction-list::-webkit-scrollbar-thumb { border: 2px solid #161616; background: #fff25c; }
+}
